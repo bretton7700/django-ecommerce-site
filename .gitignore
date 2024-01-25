@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django specific
+db.sqlite3
+core/__pycache__/
+core/*.pyc
+core/migrations/
+core/local_settings.py
+core/static/
+core/media/
+
+# IDE specific
+.vscode/
+.idea/
+
+# add other rules as needed

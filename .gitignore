@@ -12,6 +12,15 @@ core/local_settings.py
 core/static/
 core/media/
 
+item/__pycache__/
+item/*.pyc
+item/migrations/
+item/local_settings.py
+item/static/
+item/media/
+
+media/
+
 # IDE specific
 .vscode/
 .idea/

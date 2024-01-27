@@ -27,7 +27,7 @@
         <div class="hidden md:flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6" id="navLinks">
             <a href="#" class="block text-lg font-semibold hover:text-blue-500">New Item</a>
             <a href="#" class="block text-lg font-semibold hover:text-blue-500">Browse</a>
-            <a href="#" class="block  text-lg font-semibold  hover:text-blue-700">Sign Up</a>
+            <a href="{% url 'core:signup' %}" class="block  text-lg font-semibold  hover:text-blue-700">Sign Up</a>
             <a href="#" class="block  text-lg font-semibold hover:text-teal-700">Login</a>
         </div>
     </nav>
@@ -47,7 +47,7 @@
     <h3 class="mb-5 font-semibold text-white">Links</h3>
     <ul class="space-y-2">
 <li><a href="#" class="text-lg text-white hover:text-teal-700">About</a></li>
-<li><a href="{% url 'contact' %}" class="text-lg text-white hover:text-teal-700">Contact</a></li>
+<li><a href="{% url 'core:contact' %}" class="text-lg text-white hover:text-teal-700">Contact</a></li>
 <li><a href="#" class="text-lg text-white hover:text-teal-700">Privacy</a></li>
     </ul>
 

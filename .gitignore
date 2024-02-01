@@ -26,6 +26,14 @@ dashboard/migrations/
 dashboard/local_settings.py
 dashboard/static/
 dashboard/media/
+
+
+communication/__pycache__/
+communication/*.pyc
+communication/migrations/
+communication/local_settings.py
+communication/static/
+communication/media/
 media/
 
 # IDE specific

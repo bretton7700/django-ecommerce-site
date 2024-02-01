@@ -19,6 +19,13 @@ item/local_settings.py
 item/static/
 item/media/
 
+
+dashboard/__pycache__/
+dashboard/*.pyc
+dashboard/migrations/
+dashboard/local_settings.py
+dashboard/static/
+dashboard/media/
 media/
 
 # IDE specific

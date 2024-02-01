@@ -32,7 +32,7 @@
             {% if request.user.is_authenticated and request.user.is_staff %}
             <a href="{% url 'item:new' %}" class="block text-lg font-semibold hover:text-blue-500">New Item</a>
             {% endif %}
-            <a href="#" class="block text-lg font-semibold hover:text-blue-500">Browse</a>
+            <a href="{% url 'item:browse' %}" class="block text-lg font-semibold hover:text-blue-500">Browse</a>
 
             {% if request.user.is_authenticated %}
 

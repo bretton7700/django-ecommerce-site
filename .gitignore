@@ -9,14 +9,14 @@ core/__pycache__/
 core/*.pyc
 core/migrations/
 core/local_settings.py
-core/static/
+#core/static/
 core/media/
 
 item/__pycache__/
 item/*.pyc
 item/migrations/
 item/local_settings.py
-item/static/
+#item/static/
 item/media/
 
 
@@ -24,7 +24,7 @@ dashboard/__pycache__/
 dashboard/*.pyc
 dashboard/migrations/
 dashboard/local_settings.py
-dashboard/static/
+#dashboard/static/
 dashboard/media/
 
 
@@ -32,7 +32,7 @@ communication/__pycache__/
 communication/*.pyc
 communication/migrations/
 communication/local_settings.py
-communication/static/
+#communication/static/
 communication/media/
 media/
 

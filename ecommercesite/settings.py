@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-6(!%s8a9g7$m^t6+la0!-l7l+_+%@c0_k5liriyaxh2qa42brt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['production.eba-xai3r9vh.us-west-2.elasticbeanstalk.com', 'production.eba-xai3r9vh.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['production.eba-xai3r9vh.us-west-2.elasticbeanstalk.com', 'production.eba-xai3r9vh.us-west-2.elasticbeanstalk.com','127.0.0.1']
 
 LOGIN_URL= '/login/'
 LOGIN_REDIRECT_URL ='/'
@@ -122,7 +122,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = BASE_DIR / 'static'
+STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'

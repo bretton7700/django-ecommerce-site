@@ -41,3 +41,8 @@ media/
 .idea/
 
 # add other rules as needed
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

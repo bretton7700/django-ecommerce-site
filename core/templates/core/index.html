@@ -1,20 +1,48 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block title %}Welcome {% endblock %}
 {% block content %}
-<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+<div class="flex md:flex-row flex-col   space-y-2 md:space-x-4 w-full">
+    <div
+        class="flex md:flex-col flex-[0.3] md:w-24 md:h-[90vh]  flex-row md:border w-full border-gray-400 mx-6 p-2 md:rounded-xl">
+        <div class="mx-1.5 md:border-b border-gray-400 ">
+            <p class="text-sm uppercase text-center pb-2.5 font-semibold ml-auto">Categories</p>
+        </div>
 
-    <h2 class="mb-12 text-2xl text-center"> Latest Drip</h2>
-    <div class="flex flex-row space-x-4 items-center justify-start flex-wrap">
+
+        <div class="md:flex md:flex-col  md:w-[80vw] md:mt-4 md:ml-2.5 md:space-y-4 md:h-[75] hidden ">
+            {% for category in categories %}
+            <a href="#" class="text-sm flex flex-row  space-x-0.5 uppercase"><span
+                    class="hidden md:block mr-0.5">-</span class="">{{category.name}}
+                ({{category.items.count}})</span></a>
+            {% endfor %}
+        </div>
+
+        <select class="block md:hidden ml-auto mr-12">
+            {% for category in categories %}
+            <option><a href="#" class="text-sm flex flex-row  space-x-0.5 uppercase">{{category.name}}
+                    ({{category.items.count}})</span></a></option>
+            {% endfor %}
+        </select>
+
+
+    </div>
+
+    <!-- <h2 class="mb-12 text-2xl text-center"> Latest Drip</h2> -->
+    <div class="flex flex-row md:space-x-4  flex-wrap">
         {% for item in items %}
-        <div class="w-72">
+        <div class="w-84 border h-fit border-gray-300 rounded-xl m-4">
             <a href="{% url 'item:detail' item.id %}">
-                <div class="overflow-hidden h-64 w-full rounded-t-xl">
-                    <img src="{{ item.image.url }}" class="object-cover w-full h-full">
+                <div class="overflow-hidden h-64 rounded-t-xl">
+                    <img src="{% static 'images/eccomerce.avif' %}" class="object-cover product w-full h-full">
+                    <!-- <img src="{{ item.image.url }}" class=" product w-full h-full"> -->
                 </div>
-                <div class="p-6 bg-white rounded-b-xl">
-                    <h2 class="text-2xl first-letter">{{ item.name }}</h2>
-                    <p class="text-blue-500">Price: {{ item.price }}</p>
+                <div class="p-6 bg-white flex flex-row justify-between items-center rounded-b-xl">
+                    <h2 class="text-sm first-letter:uppercase">{{ item.name }}</h2>
+                    <p class="text-black"><span class="text-black">Price:</span>
+                        <span id="money text-sm">{{item.price}}</span>
+                    </p>
                 </div>
             </a>
         </div>
@@ -22,12 +50,12 @@
     </div>
 </div>
 
-<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+<!-- <div class="mt-6 px-6 py-12 rounded-xl">
 
     <h2 class="mb-12 text-2xl text-center"> Categories</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         {% for category in categories %}
-        <div>
+        <div class=" border border-gray-300 ">
             <a href="#">
 
                 <div class="p-6 bg-white rounded-b-xl">
@@ -39,5 +67,25 @@
 
         {% endfor %}
     </div>
-</div>
+</div> -->
+
+<style>
+    .product {
+        transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+        transform: scale(1.1);
+    }
+</style>
+
+<script async>
+
+    const formatCurrency = amt => (new Intl.NumberFormat("en-US", { style: "currency", currency: "KES", })).format(amt);
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('#money').forEach(x => {
+            x.innerHTML = formatCurrency(x.innerHTML)
+        })
+    });
+</script>
 {% endblock %}

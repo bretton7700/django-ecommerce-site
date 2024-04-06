@@ -4,36 +4,45 @@
 
 {% block content %}
 
+
+
 <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
     <div class="md:col-span-3">
         <img src="{{ item.image.url }}" class="rounded-xl w-full h-auto">
     </div>
     <div class="md:col-span-2 p-6 bg-gray-100 rounded-xl">
-        <h1 class="mb-6 text-3xl">{{ item.name }}</h1>
-        <p class="text-gray-500"><strong> Price:</strong> {{ item.price }} Ksh</p>
-        <p class="text-gray-500"><strong> Merchant:</strong> {{ item.created_by.username }}</p>
+        <h1 class="mb-6 text-xl first-letter:uppercase">{{ item.name }}</h1>
+        <div class="text-black text-sm w-full"><strong class="w-12"> Price:</strong> <span class="h-4"
+                id="money">{{item.price}}</span>
+        </div>
+        <div class="text-black text-sm w-full"><strong class="w-12"> Merchant:</strong> <span>
+                {{ item.created_by.username }}
+
+            </span></div>
         {% if item.description %}
         <p class="text-gray-700">
-            <strong class="text-gray-500">Description:</strong><br />
+            <strong class="text-black text-sm w-full">Description:</strong><br />
             {{ item.description }}
         </p>
         {% endif %}
 
 
         {% if request.user == item.created_by %}
-        <div class="mt-6 p-6 bg-white rounded-xl">
-            <p>You are allowed to Delete This!</p>
-            <a href="{% url 'item:edit' item.id %}"
-                class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl ">Edit</a>
+        <div class="flex flex-col space-y-4 mt-12 p-6 bg-white rounded-xl">
+            <p class="text-sm">You are allowed to Delete This!</p>
+            <div clss="flex flex-roe items-center justify-start space-x-4">
+                <a href="{% url 'item:edit' item.id %}"
+                    class="inline-block px-3 py-1.5  text-sm font-semibold bg-teal-500 text-white rounded-xl ">Edit</a>
 
-            <a href="javascript:void(0);" onclick="showModal(this)" data-delete-url="{% url 'item:delete' item.id %}"
-                class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl">Delete</a>
-
+                <a href="javascript:void(0);" onclick="showModal(this)"
+                    data-delete-url="{% url 'item:delete' item.id %}"
+                    class="inline-block px-3 py-1.5  text-sm  font-semibold bg-red-500 text-white rounded-xl">Delete</a>
+            </div>
 
         </div>
         {% else %}
         <a href="{% url 'communication:new' item.id %}"
-            class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-blue-500 rounded-xl text-white hover:bg-blue-700">Contact
+            class="inline-block mt-6 px-3 py-1.5  text-sm font-semibold bg-blue-500 rounded-xl text-white hover:bg-blue-700">Contact
             Merchant</a>
         {% endif %}
 
@@ -61,5 +70,16 @@
         {% endfor %}
     </div>
 </div>
+
+<script async>
+
+    const formatCurrency = amt => (new Intl.NumberFormat("en-US", { style: "currency", currency: "KES", })).format(amt);
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('#money').forEach(x => {
+            x.innerHTML = formatCurrency(x.innerHTML)
+        })
+    });
+</script>
+
 
 {% endblock %}

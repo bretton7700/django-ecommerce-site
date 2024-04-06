@@ -1,38 +1,75 @@
-{% extends 'core/base.html' %}
-{% block title %}Sign up{% endblock %}
+{% load static %}
+<!doctype html>
+<html>
 
-{% block content %}
-<div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
-    <h1 class="mb-6 text-3xl">Login In</h1>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, init ial-scale=1.0">
+    <script src="{% static 'js/tailwind.js' %}"></script>
+    <title> Jodiso</title>
+</head>
 
-    <form method="post" action=".">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label class="inline-block mb-2">Username</label>
-            {{ form.username }}
-        </div>
+<body class="flex flex-row items-center justify-center h-screen w-screen">
+
+    <img src="{% static 'images/eccomerce.avif' %}" class="hidden  md:block md:h-screen md:w-[50%]" alt="Example Image">
+
+    <div class=" md:w-[50%] my-auto  md:mx-24 w-full space-x-3 p-6  rounded-xl">
+        <h1 class="mb-6 text-3xl text-center">Jodiso</h1>
+
+        <form method="post" id="login" action=".">
+            <p class="text-base">Sign in</p>
+            {% csrf_token %}
+            <div class="mb-3 w-full">
+                <label class="inline-block mb-2 text-sm">Username</label>
+                {{ form.username }}
+            </div>
 
 
 
-        <div class="mb-3">
-            <label class="inline-block mb-2">Password</label>
-            {{ form.password }}
-        </div>
+            <div class="mb-3 w-full">
+                <label class="inline-block mb-2 text-sm">Password</label>
+                {{ form.password }}
+            </div>
 
 
 
-        {% if form.errors or form.non_field_erros %}
-        <div class="mb-3 p-6 bg-red-100 rounded-xl">
-            {% for field in form %} {{ field.errors }} {% endfor %}
-            {{ form.non_field_errors }}
-        </div>
+            {% if form.errors or form.non_field_erros %}
+            <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                {% for field in form %} {{ field.errors }} {% endfor %}
+                {{ form.non_field_errors }}
+            </div>
 
-        {% endif %}
+            {% endif %}
 
-        <button class="py-4 px-8 text-lg bg-green-500 hover:bg-green-700 rounded-xl text-white">
-            Login In
-        </button>
-    </form>
-</div>
+            <button class="py-2.5 px-1.5 w-full text-base bg-green-500 hover:bg-green-700 rounded-xl text-white">
+                Sign In
+            </button>
 
-{% endblock %}
+            <p class="text-sm">Dont have an account yet ...? <a href="{% url 'core:signup' %}"
+                    class="text-blue-400">Sign
+                    Up</a> </p>
+        </form>
+    </div>
+
+</body>
+
+<style>
+    #login {
+        display: flex;
+        gap: 12px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #login {
+        input {
+            background-color: white !important;
+            border: gray;
+            padding: 8px 6px;
+            border-radius: 12px;
+        }
+    }
+</style>
+
+</html>

@@ -1,10 +1,11 @@
+{% load static %}
 <!doctype html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, init ial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static 'js/tailwind.js' %}"></script>
     <title>{% block title %}{% endblock %} | Jodiso</title>
 </head>
 
@@ -58,9 +59,9 @@
 </style>
 
 <body>
+    {% if not auth_page %}
     <nav class="py-2 px-4 md:py-4 md:px-6 flex justify-between items-center border-b border-blue-200">
         <a href="/" class="text-2xl font-semibold gradient-text">Jodiso</a>
-
         <!-- Hamburger Icon for small screens -->
 
 
@@ -107,7 +108,6 @@
                 <!-- <a href="{% url 'item:browse' %}" class="block text-sm font-semibold hover:text-blue-500">Browse</a> -->
 
                 {% if request.user.is_authenticated %}
-
                 <a href="{% url 'communication:inbox' %}"
                     class="block text-sm font-semibold flex flex-row space-x-3  hover:text-blue-700"><svg
                         xmlns="http://www.w3.org/2000/svg" class="text-sm" width="20" height="20" viewBox="0 0 24 24"
@@ -118,6 +118,7 @@
                     </svg>
                     <span class="text-sm">Messages</span>
                 </a>
+                {% endif %}
 
 
                 {% if request.user.is_authenticated and request.user.is_staff %}
@@ -134,6 +135,21 @@
                 </a>
                 {% endif %}
 
+
+
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'core:signout' %}" class="flex flex-row space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="#eb0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-log-out">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" x2="9" y1="12" y2="12" />
+                    </svg>
+                    <span class="text-sm">Logout</span>
+                </a>
+
+
                 {% else %}
                 <a href="{% url 'core:signup' %}" class="block  text-sm font-semibold  hover:text-blue-700">Sign Up</a>
                 <a href="{% url 'core:login' %}" class="block  text-sm font-semibold hover:text-teal-700">Login</a>
@@ -142,6 +158,7 @@
         </div>
     </nav>
 
+    {% endif %}
 
 
     <div class="max-w-4xl mx-auto mt-4">
@@ -160,6 +177,8 @@
         {% endblock %}
     </div>
 
+
+    {% if not auth_page %}
     <footer
         class="py-4 fixed bottom-0 w-full px-4 md:py-6 md:px-6 flex flex-col md:flex-row justify-between bg-blue-800">
         <div class="mb-4 md:mb-0 w-full md:w-2/3 pr-10">
@@ -177,6 +196,7 @@
 
         </div>
     </footer>
+    {% endif %}
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {

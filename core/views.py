@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth import logout
 from item.models import Category,Item
 from .forms import SignupForm
 
@@ -21,8 +22,14 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
+            request.session['auth_page'] = 'true'
             return redirect('/login/')
     else:
         form = SignupForm()
 
-    return render(request, 'core/signup.html', {'form': form})
+    return render(request, 'core/signup.html', {'form': form,'auth_page':'true'})
+
+
+def signout(request):
+    logout(request)
+    return redirect('/login')
